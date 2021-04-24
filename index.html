@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="pages/index.css">
+  <title>Mesto Russia</title>
+</head>
+
+<body class="body">
+
+  <header class="header">
+    <img class="logo header__logo" src="images/logo.svg" alt="Логотип">
+  </header>
+
+  <main class="content">
+    <section class="profile">
+      <div class="profile__avatar"></div>
+      <div class="profile__info">
+        <div class="profile__title-wrapper">
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <div class="profile__edit-button"></div>
+        </div>
+        <p class="profile__subtitle">Исследователь океана</p>
+      </div>
+      <div class="profile__add-button"></div>
+    </section>
+
+    <section class="cards">
+      <div class="card">
+        <div class="card__image" style="background-image: url(images/card1.jpg)"></div>
+        <div class="card__container">
+          <h2 class="card__text">Карачaевск</h2>
+          <div class="card__like"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__image" style="background-image: url(images/card2.jpg)"></div>
+        <div class="card__container">
+          <h2 class="card__text">Гора Эльбрус</h2>
+          <div class="card__like"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__image" style="background-image: url(images/card3.jpg)"></div>
+        <div class="card__container">
+          <h2 class="card__text">Домбай</h2>
+          <div class="card__like"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__image" style="background-image: url(images/card4.jpg)"></div>
+        <div class="card__container">
+          <h2 class="card__text">Гора Эльбрус</h2>
+          <div class="card__like"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__image" style="background-image: url(images/card5.jpg)"></div>
+        <div class="card__container">
+          <h2 class="card__text">Домбай</h2>
+          <div class="card__like"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__image" style="background-image: url(images/card6.jpg)"></div>
+        <div class="card__container">
+          <h2 class="card__text">Карачаево-Черкесия</h2>
+          <div class="card__like"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__copyright">©2021 Анастасия Дубковецкая</p>
+  </footer>
+
+  <div class="popup">
+    <div class="popup__container">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form name="form" class="popup__form">
+        <div class="popup__form-inputs">
+          <input name="input_name" type="text" placeholder="Имя" class="popup__form-input popup__form-input_name">
+          <input name="input_about" type="text" placeholder="О себе" class="popup__form-input popup__form-input_about">
+        </div>
+        <button type="submit" class="popup__form-button popup__form-button_submit">Сохранить</button>
+        <button type="reset" class="popup__form-button popup__form-button_close"></button>
+      </form>
+    </div>
+  </div>
+
+<script src="./script/index.js" defer></script>
+</body>
+</html>

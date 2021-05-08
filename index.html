@@ -26,62 +26,14 @@
       <button type="button" class="profile__add-button"></button>
     </section>
 
-    <section class="cards">
-      <div class="card">
-        <div class="card__image" style="background-image: url(images/card1.jpg)"></div>
-        <div class="card__container">
-          <h2 class="card__text">Карачaевск</h2>
-          <button type="button" class="card__like"></button>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card__image" style="background-image: url(images/card2.jpg)"></div>
-        <div class="card__container">
-          <h2 class="card__text">Гора Эльбрус</h2>
-          <button type="button" class="card__like"></button>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card__image" style="background-image: url(images/card3.jpg)"></div>
-        <div class="card__container">
-          <h2 class="card__text">Домбай</h2>
-          <button type="button" class="card__like"></button>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card__image" style="background-image: url(images/card4.jpg)"></div>
-        <div class="card__container">
-          <h2 class="card__text">Гора Эльбрус</h2>
-          <button type="button" class="card__like"></button>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card__image" style="background-image: url(images/card5.jpg)"></div>
-        <div class="card__container">
-          <h2 class="card__text">Домбай</h2>
-          <button type="button" class="card__like"></button>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card__image" style="background-image: url(images/card6.jpg)"></div>
-        <div class="card__container">
-          <h2 class="card__text">Карачаево-Черкесия</h2>
-          <button type="button" class="card__like"></button>
-        </div>
-      </div>
-    </section>
+    <section class="cards"></section>
   </main>
 
   <footer class="footer">
     <p class="footer__copyright">&copy;2021 Анастасия Дубковецкая</p>
   </footer>
 
-  <div class="popup">
+  <div class="popup popup_name_edit-profile">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
       <form name="profile_edit" class="popup__form">
@@ -95,6 +47,39 @@
     </div>
   </div>
 
-<script src="./script/index.js" defer></script>
+  <div class="popup popup_name_add-card">
+    <div class="popup__container">
+      <h2 class="popup__title">Новое место</h2>
+      <form name="profile_edit" class="popup__form">
+        <div class="popup__form-inputs">
+          <input name="name" type="text" placeholder="Название" class="popup__form-input">
+          <input name="link" type="text" placeholder="Ссылка на картинку" class="popup__form-input">
+        </div>
+        <button type="submit" class="popup__form-button-submit">Создать</button>
+        <button type="reset" class="popup__form-button-close"></button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_name_show-image">
+    <div class="popup__image-container">
+      <img class="popup__image" src="#" alt="">
+      <p class="popup__image-title"></p>
+      <button type="button" class="popup__form-button-close"></button>
+    </div>
+  </div>
+
+  <template id="card">
+    <div class="card">
+      <button type="button" class="card__remove"></button>
+      <div class="card__image"></div>
+      <div class="card__container">
+        <h2 class="card__text"></h2>
+        <button type="button" class="card__like"></button>
+      </div>
+    </div>
+  </template>
+
+  <script src="./script/index.js" defer></script>
 </body>
 </html>

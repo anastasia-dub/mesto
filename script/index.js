@@ -57,7 +57,7 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
-function addCard(data) {
+function createNewCard(data) {
   const cardTemplate = document.querySelector('#card').content;
 
   // клонируем содержимое тега template
@@ -80,8 +80,12 @@ function addCard(data) {
   cardElement.querySelector('.card__remove').addEventListener('click', () => {
     cardElement.remove();
   });
-  // отображаем на странице
-  cardsContainer.append(cardElement);
+
+  return cardElement;
+}
+
+function renderCard(card) {
+  cardsContainer.prepend(card);
 }
 
 
@@ -133,11 +137,12 @@ profileAddButton.addEventListener('click', () => {
 function hadleAddCardFormSubmit(e) {
   e.preventDefault();
 
-  addCard({
+  const newCard = createNewCard({
     name: addCardPopupInputName.value,
     link: addCardPopupInputLink.value
   });
 
+  renderCard(newCard);
   addCardPopupForm.reset();
   closePopup(addCardPopup);
 }
@@ -156,4 +161,4 @@ imagePopupButtonClose.addEventListener('click', () => {
 
 
 
-initialCards.forEach(card => addCard(card));
+initialCards.forEach(cardData => renderCard(createNewCard(cardData)));

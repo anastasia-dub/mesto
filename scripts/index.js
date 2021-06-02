@@ -28,16 +28,20 @@ const imagePopupTitle = imagePopup.querySelector('.popup__image-title');
 
 let popupEscapeListener = null;
 
-const formValidator = new FormValidator({
+const validatorConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__form-input',
   submitButtonSelector: '.popup__form-button-submit',
   inactiveButtonClass: 'popup__form-button-submit_inactive',
   inputErrorClass: 'popup__form-input_error',
   errorClass: 'popup__form-input-error_active'
-});
+};
 
-formValidator.enableValidation();
+const profileFormValidator = new FormValidator(validatorConfig, profileEditPopupForm);
+const addCardFormValidator = new FormValidator(validatorConfig, addCardPopupForm);
+
+profileFormValidator.enableValidation();
+addCardFormValidator.enableValidation();
 
 function addPopupEscapeListener(popup) {
   popupEscapeListener = function (evt) {
@@ -61,7 +65,6 @@ function showPopup(popup) {
 
 function resetForm(formElement) {
   formElement.reset();
-  formValidator.resetFormValidity(formElement);
 }
 
 function closePopup(popup) {
@@ -104,7 +107,8 @@ document.addEventListener('animationend', function (e) {
 
 profileEditButton.addEventListener('click', () => {
   resetForm(profileEditPopupForm);
-  
+  profileFormValidator.resetFormValidity();
+
   profileEditPopupInputName.value = profileTitle.textContent;
   profileEditPopupInputAbout.value = profileSubtitle.textContent;
 
@@ -130,10 +134,11 @@ profileEditPopupForm.addEventListener('submit', handleEditProfileFormSubmit);
 
 profileAddButton.addEventListener('click', () => {
   resetForm(addCardPopupForm);
+  addCardFormValidator.resetFormValidity();
   showPopup(addCardPopup);
 });
 
-function hadleAddCardFormSubmit(e) {
+function handleAddCardFormSubmit(e) {
   e.preventDefault();
 
   const newCard = createNewCard({
@@ -149,7 +154,7 @@ addCardPopupButtonClose.addEventListener('click', () => {
   closePopup(addCardPopup);
 });
 
-addCardPopupForm.addEventListener('submit', hadleAddCardFormSubmit);
+addCardPopupForm.addEventListener('submit', handleAddCardFormSubmit);
 
 // imagePopup handlers
 

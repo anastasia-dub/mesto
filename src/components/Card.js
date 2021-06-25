@@ -1,9 +1,9 @@
  class Card {
-     constructor(text, image, templateSelector, onClick) {
+     constructor(text, image, templateSelector, handleCardClick) {
         this._text = text;
         this._image = image;
         this._templateSelector = templateSelector;
-        this._onClick = onClick;
+        this._handleCardClick = handleCardClick;
      }
 
      _getTemplate() {
@@ -31,7 +31,7 @@
         this._element.querySelector('.card__text').textContent = this._text;
 
         this._element.querySelector('.card__image').addEventListener('click', () => {
-          this._onClick(this._text, this._image);
+          this._handleCardClick(this._text, this._image);
         });
 
         this._element.querySelector('.card__like').addEventListener('click', () => {

@@ -25,25 +25,29 @@
         this._element.querySelector('.card__like').classList.toggle('card__like_active');
      }
 
+     _setEventListeners() {
+        this._element.querySelector('.card__image').addEventListener('click', () => {
+           this._handleCardClick(this._text, this._image);
+        });
+
+        this._element.querySelector('.card__like').addEventListener('click', () => {
+           this._toggleLike();
+        });
+
+        this._element.querySelector('.card__remove').addEventListener('click', () => {
+           this._remove();
+        });
+     }
+
     generateCard() {
         this._element = this._getTemplate();
         this._element.querySelector('.card__image').style.backgroundImage = `url(${this._image})`;
         this._element.querySelector('.card__text').textContent = this._text;
-
-        this._element.querySelector('.card__image').addEventListener('click', () => {
-          this._handleCardClick(this._text, this._image);
-        });
-
-        this._element.querySelector('.card__like').addEventListener('click', () => {
-            this._toggleLike();
-        });
-
-        this._element.querySelector('.card__remove').addEventListener('click', () => {
-            this._remove();
-        });
+        
+        this._setEventListeners();
         
         return this._element;
-	}
+	 }
  }
 
  export default Card;

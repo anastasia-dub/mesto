@@ -1,8 +1,10 @@
 import './index.css';
 
+import { validatorConfig } from '../utils/constants.js';
+import initialCards from '../utils/initial-cards.js';
+
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
-import initialCards from '../components/initial-cards.js';
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -18,14 +20,6 @@ const profileEditPopupInputAbout = profileEditPopupElement.querySelector('.popup
 
 const addCardPopupElement = document.querySelector('.popup.popup_name_add-card');
 const addCardPopupForm = addCardPopupElement.querySelector('.popup__form');
-
-const validatorConfig = {
-  inputSelector: '.popup__form-input',
-  submitButtonSelector: '.popup__form-button-submit',
-  inactiveButtonClass: 'popup__form-button-submit_inactive',
-  inputErrorClass: 'popup__form-input_error',
-  errorClass: 'popup__form-input-error_active'
-};
 
 const profileFormValidator = new FormValidator(validatorConfig, profileEditPopupForm);
 const addCardFormValidator = new FormValidator(validatorConfig, addCardPopupForm);

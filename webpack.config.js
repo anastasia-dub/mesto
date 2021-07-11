@@ -12,6 +12,7 @@ module.exports = {
         assetModuleFilename: 'assets/[name].[hash][ext]'
     },
     mode: 'development',
+    devtool: 'source-map',
     devServer: {
         contentBase: path.resolve(__dirname, './dist'),
         compress: true, 

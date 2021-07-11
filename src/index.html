@@ -14,18 +14,24 @@
 
   <main class="content">
     <section class="profile">
-      <div class="profile__avatar"></div>
+      <div class="profile__avatar-container">
+        <div class="profile__avatar"></div>
+        <button class="profile__avatar-edit-button"></button>
+      </div>
       <div class="profile__info">
         <div class="profile__title-wrapper">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <h1 class="profile__title"></h1>
           <button type="button" class="profile__edit-button"></button>
         </div>
-        <p class="profile__subtitle">Исследователь океана</p>
+        <p class="profile__subtitle"></p>
       </div>
       <button type="button" class="profile__add-button"></button>
     </section>
 
-    <section class="cards"></section>
+    <section class="cards">
+      <ul class="card__list">
+      </ul>
+    </section>
   </main>
 
   <footer class="footer">
@@ -80,13 +86,42 @@
     </div>
   </div>
 
+  <div class="popup popup_name_confirm">
+    <div class="popup__container">
+      <h2 class="popup__title popup__title_confirm">Вы уверены?</h2>
+      <form name="profile_edit" class="popup__form" novalidate>
+        <button type="submit" class="popup__form-button-submit">Да</button>
+        <button type="reset" class="popup__form-button-close"></button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_name_update-avatar">
+    <div class="popup__container">
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form name="profile_edit" class="popup__form" novalidate>
+        <div class="popup__form-inputs">
+          <div class="popup__form-field">
+            <input id="avatar-link" name="avatar" type="url" placeholder="Ссылка на аватар" class="popup__form-input" required>
+            <span class="popup__form-input-error avatar-link-error"></span>
+          </div>
+        </div>
+        <button type="submit" class="popup__form-button-submit">Сохранить</button>
+        <button type="reset" class="popup__form-button-close"></button>
+      </form>
+    </div>
+  </div>
+
   <template id="card">
     <div class="card">
       <button type="button" class="card__remove"></button>
       <div class="card__image"></div>
       <div class="card__container">
         <h2 class="card__text"></h2>
-        <button type="button" class="card__like"></button>
+        <div class="card__like-container">
+          <button type="button" class="card__like"></button>
+          <span class="card__like-count">0</span>
+        </div>
       </div>
     </div>
   </template>

@@ -1,9 +1,13 @@
  class Card {
-     constructor(text, image, templateSelector, handleCardClick) {
-        this._text = text;
-        this._image = image;
+     constructor(data, templateSelector, directions, ownerId, {handleCardClick, handleCardClickDelete, deleteLike, setLike}) {
+        this._data = data;
         this._templateSelector = templateSelector;
+        this._directions = directions;
+        this._ownerId = ownerId;
         this._handleCardClick = handleCardClick;
+        this._handleCardClickDelete = handleCardClickDelete;
+        this._setLike = setLike;
+        this._deleteLike = deleteLike;
      }
 
      _getTemplate() {
@@ -16,36 +20,82 @@
         return cardElement;
      }
      
-     _remove() {
-        this._element.remove();
-        this._element = null;
+     deleteCard() {
+      this._deleteElement(this._element);
      }
-     
-     _toggleLike() {
-        this._element.querySelector('.card__like').classList.toggle('card__like_active');
+  
+     _deleteElement(elem) {
+      elem.remove();
+      elem = null;
      }
+
+     _like(data) {
+      this._addLikedClass();
+      this._setLike(data);
+    }
+
+    _dislike(data) {
+      this._removeLikedClass();
+      this._deleteLike(data);
+    }
+
+     _addLikedClass() {
+      this._likeButton.classList.add(this._directions.cardLikedButtonClass);
+    }
+
+    _removeLikedClass() {
+      this._likeButton.classList.remove(this._directions.cardLikedButtonClass);
+    }
+
+    setLikeCount(data) {
+      this._cardLikeCount.textContent = String(data.likes.length);
+    }
+
+    _checkIsMasterCard() {
+      if (this._data.owner._id !== this._ownerId) {
+        this._deleteElement(this._deleteButton);
+      }
+    }
+
+    _checkLikedStatus() {
+      this._data.likes.forEach((likeOwner) => {
+        if (likeOwner._id === this._ownerId) {
+          this._addLikedClass();
+        }
+      });
+    }
 
      _setEventListeners() {
-        this._element.querySelector('.card__image').addEventListener('click', () => {
-           this._handleCardClick(this._text, this._image);
-        });
-
-        this._element.querySelector('.card__like').addEventListener('click', () => {
-           this._toggleLike();
-        });
-
-        this._element.querySelector('.card__remove').addEventListener('click', () => {
-           this._remove();
-        });
+      this._cardImage.addEventListener('click', () => {
+         this._handleCardClick(this._data);
+       });
+       this._likeButton.addEventListener('click', () => {
+         if (this._likeButton.classList.contains(this._directions.cardLikedButtonClass)) {
+           this._dislike(this._data);
+         } else {
+           this._like(this._data);
+         }
+       });
+       this._deleteButton.addEventListener('click', this._handleCardClickDelete);
      }
 
     generateCard() {
         this._element = this._getTemplate();
-        this._element.querySelector('.card__image').style.backgroundImage = `url(${this._image})`;
-        this._element.querySelector('.card__text').textContent = this._text;
-        
+        this._cardImage = this._element.querySelector(this._directions.cardImageSelector);
+        this._cardText = this._element.querySelector(this._directions.cardTextSelector);
+        this._likeButton = this._element.querySelector(this._directions.cardLikeButtonSelector);
+        this._cardLikeCount = this._element.querySelector(this._directions.cardLikeCountSelector);
+        this._deleteButton = this._element.querySelector(this._directions.cardDeleteButtonSelector);
+
+
+        this._cardImage.style.backgroundImage = `url(${this._data.link})`;
+        this._cardImage.alt = `Фотография ${this._data.name}`;
+        this._cardText.textContent = this._data.name;
+        this.setLikeCount(this._data);
         this._setEventListeners();
-        
+        this._checkIsMasterCard();
+        this._checkLikedStatus();
+
         return this._element;
 	 }
  }

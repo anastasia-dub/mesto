@@ -8,7 +8,7 @@ export const validatorConfig = {
 
 export const cardsSettings = {
     cardSelector: '.card',
-    cardListSelector: '.card__list',
+    cardListSelector: '.cards__list',
     cardLikedButtonClass: 'card__like_active',
     cardImageSelector: '.card__image',
     cardLikeCountSelector: '.card__like-count',

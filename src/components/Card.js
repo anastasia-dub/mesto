@@ -1,11 +1,11 @@
  class Card {
-     constructor(data, templateSelector, directions, ownerId, {handleCardClick, handleCardClickDelete, deleteLike, setLike}) {
+     constructor(data, templateSelector, directions, ownerId, {handleCardClick, handleCardDelete, deleteLike, setLike}) {
         this._data = data;
         this._templateSelector = templateSelector;
         this._directions = directions;
         this._ownerId = ownerId;
         this._handleCardClick = handleCardClick;
-        this._handleCardClickDelete = handleCardClickDelete;
+        this._handleCardDelete = handleCardDelete;
         this._setLike = setLike;
         this._deleteLike = deleteLike;
      }
@@ -76,7 +76,7 @@
            this._like(this._data);
          }
        });
-       this._deleteButton.addEventListener('click', this._handleCardClickDelete);
+       this._deleteButton.addEventListener('click', this._handleCardDelete);
      }
 
     generateCard() {

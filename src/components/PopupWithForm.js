@@ -7,6 +7,7 @@ class PopupWithForm extends Popup {
         this._form = this._popup.querySelector('.popup__form');
         this._submitButton = this._form.querySelector('.popup__form-button-submit');
         this._initialValueSubmitButton = this._submitButton.textContent;
+        this._inputs = this._form.querySelectorAll('.popup__form-input');
     }
 
     renderLoading(isLoading, initialDownloadMessage = 'Cохранение...') {
@@ -18,7 +19,13 @@ class PopupWithForm extends Popup {
       }
 
     _getInputValues() {
-        return new FormData(this._form);
+        const result = {};
+
+        this._inputs.forEach(input => {
+          result[input.name] = input.value;
+        });
+
+        return result;
     }
 
     setEventListeners() {

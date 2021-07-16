@@ -16,14 +16,26 @@ class UserInfo {
     }
 
     setUserAvatar(data) {
-        this._avatar.style.backgroundImage = `url(${data.avatar})`;
+        if (typeof data !== 'object') return;
+
+        if (data.avatar) {
+            this._avatar.style.backgroundImage = `url(${data.avatar})`;
+        }
     }
 
     setUserInfo(data) {
-        this._name.textContent = data.name;
-        this._about.textContent = data.about;
+        if (typeof data !== 'object') return;
+
+        if (data.name) {
+            this._name.textContent = data.name;
+            this._avatar.alt = `${data.name} avatar`;
+        }
+
+        if (data.about) {
+            this._about.textContent = data.about;
+        }
+
         this.setUserAvatar(data);
-        this._avatar.alt = `${data.name} avatar`;
     }
 }
 

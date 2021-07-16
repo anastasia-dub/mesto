@@ -6,7 +6,7 @@ class Section {
 
     addItem(domElem, place = 'prepend') {
         if (place ==='append') {
-            this._container.prepend(domElem); 
+            this._container.append(domElem); 
         } else {
             this._container.prepend(domElem);
         }
